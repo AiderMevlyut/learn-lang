@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LearnLang</string>
+
+    <string name="item_rule">Правила</string>
+    <string name="item_lessons">Упражнения</string>
+    <string name="item_statistics">Статистика</string>
+    <string name="item_settings">Настройки</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
