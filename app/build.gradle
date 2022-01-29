@@ -56,4 +56,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-common-ktx:20.0.0'
 
     implementation 'com.google.firebase:firebase-database:20.0.3'
+
+    //recyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    //cardView
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
