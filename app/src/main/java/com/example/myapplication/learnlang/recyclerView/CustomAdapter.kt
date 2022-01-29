@@ -5,10 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.learnlang.R
 
-class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+
+    private lateinit var onItemListener: OnItemClickListener
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +32,9 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         holder.textView.text = itemsViewModel.title
         holder.progressBarHor.progress = itemsViewModel.currentProgress
         holder.progressBarHor.secondaryProgress = itemsViewModel.secondaryProgress
-
+        holder.cardView.setOnClickListener{
+            onItemListener.onItemClick(position)
+        }
     }
 
     // return the number of the items in the list
@@ -41,5 +46,15 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
         val progressBarHor: ProgressBar = itemView.findViewById(R.id.progressBarHor)
+        val cardView: CardView = itemView.findViewById(R.id.cardView)
     }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
+        this.onItemListener = onItemClickListener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(pos: Int)
+    }
+
 }

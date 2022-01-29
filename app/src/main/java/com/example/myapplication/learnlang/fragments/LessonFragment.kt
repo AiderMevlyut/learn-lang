@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ class LessonFragment : Fragment() {
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview)
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(context)
+
 
         val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
@@ -68,13 +70,19 @@ class LessonFragment : Fragment() {
 
                 // This will pass the ArrayList to our Adapter
                 val adapter = CustomAdapter(data)
+                adapter.setOnItemClickListener(object : CustomAdapter.OnItemClickListener {
+                    override fun onItemClick(pos: Int) {
+                        Toast.makeText(context, pos.toString(), Toast.LENGTH_SHORT).show()
+                    }
+
+                })
 
                 // Setting the Adapter with the recyclerview
                 recyclerview.adapter = adapter
 
                 progressBar.visibility = View.GONE
                 recyclerview.visibility = View.VISIBLE
-            }
+            }//
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
